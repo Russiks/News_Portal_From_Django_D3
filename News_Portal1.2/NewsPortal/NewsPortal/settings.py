@@ -33,16 +33,18 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',  # Приложение поддержки авторизации
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',  # Управление сессиями. В обработке каждого запроса (переменная request) вы можете
+    # получить доступ к данным сессии (которые хранятся на сервере) и каким-то образом манипулировать ими.
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',  # Приложение для работы с "статическими файлами"(CSS, Java и т.д)
     # Список пользовательских приложений, создается разработчиком
     'django.contrib.sites',
     'django.contrib.flatpages',
-    # newsapp - основное приложение новостного портала
-    'newsapp',
+    'newsapp',  # newsapp - основное приложение новостного портала
+
+    'django_filters',  # Приложение для подключения фильтров
 ]
 
 SITE_ID = 1

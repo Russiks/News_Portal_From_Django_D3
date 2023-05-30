@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+{% load custom_tags %}
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Django flatpages - {% block title %} {% endblock title %}</title>
+        <title>News Portal by Russiks - {% block title %} {% endblock title %}</title>
 
         {% load static %}
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -15,7 +16,7 @@
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container">
-                <a class="navbar-brand" href="/news/">Django flatpages</a>
+                <a class="navbar-brand" href="/news/">News Portal from Django</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarResponsive"
                         aria-controls="navbarResponsive" aria-expanded="false"
@@ -50,7 +51,16 @@
 <!--                        </li>-->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/news/">News</a>
+                            <a class="nav-link" href="/news/">Publication</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/news/news/create/ ">Create news</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/post/articles/create/">Create post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/news/search/">Search</a>
                         </li>
                     </ul>
                 </div>
@@ -67,6 +77,6 @@
             </div>
         </div>
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; My Website 2022</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; My Website {% current_time '%Y' %}</div></footer>
     </body>
 </html>

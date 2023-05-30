@@ -5,6 +5,7 @@
 from django.db import models
 from django.contrib.auth.models import User  # Импорт встроенной модели
 from django.db.models import Sum  # Импорт функции для суммирования
+from django.urls import reverse
 
 
 # Создание сущности "Автор" в БД (для создания сущностей в БД через ООП, нужно наследоваться от "models.Model")
@@ -82,17 +83,21 @@ class Post(models.Model):
     # параметр), второй параметр: on_delete, задает опцию удаления объекта текущей модели при удалении связанного
     # объекта главной модели
     dateCreation = models.DateTimeField(
-        auto_now_add=True)  # SQLite: datetime NULL. Автоматически добавляем временное поле, которое хранит время и
+        auto_now_add=True,
+        verbose_name='Дата публикации'
+    )  # SQLite: datetime NULL. Автоматически добавляем временное поле, которое хранит время и
     # дату, при создании экземпляра
     postCategory = models.ManyToManyField(
         Category,
-        through='PostCategory')  # Отношения Многие ко Многим сущности Category через PostCategory.
+        through='PostCategory',
+        verbose_name='Категория(category)'
+    )  # Отношения Многие ко Многим сущности Category через PostCategory.
     title = models.CharField(
         max_length=128,
         verbose_name='Оглавление')  # Поле с оглавлением, максимальная длинна символов - 128
     text = models.TextField(
         blank=True,
-        help_text='Help field',
+        help_text='Текст',
         verbose_name='Статья')  # Поле с текстом, максимальная длинна символов - неограниченно
     rating = models.SmallIntegerField(
         default=0,
@@ -107,6 +112,10 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.get_categoryType_display()}: {self.title.title()}. Автор: {self.author}'  # Метод Строка, для
         # вывода названий в админ-панели через f-строки
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.id)])  # Возвращаем пользователя на страницу созданной новости.
+        # Возвращаем значение ссылки (добавляем значения для аргументов name). Аргумент (args) равен id модели
 
     # Метод рейтинга
     def like(self):

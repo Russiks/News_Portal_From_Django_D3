@@ -11,8 +11,8 @@ Post
 
 {% block content %}
 <h1>Свежие новости</h1>
-{{ post.author }}
+<b> &nbsp Автор: &nbsp </b> {{ post.author }}<br>
 {{ post.dateCreation|date:'d-M-Y H:m' }}<br>
-{{ post.title|censor }}<br>
+<b> &nbsp {{ post.title|censor }} &nbsp </b> </br>
 {{ post.text|censor }}
 {% endblock content %}
